@@ -1,0 +1,52 @@
+ <!-- As a link -->
+ <nav class="navbar navbar-light bg-dark " >
+    <a class="navbar-brand  " href="#" style="color:rgb(85, 98, 237);"><b>&#169; HAFC Bank Pvt.Ltd </b></a>
+    <span class="quote text-light">Giving you freedom...</span>
+    <!-- String interpolation binding -->
+    <h4 class="text-info">{{aim}}</h4>
+  </nav>
+  
+  
+  <div class="container col-md-12 mt-0">
+      <div class="d-flex justify-content-center h-100">
+          <div class="card">
+              <div class="card-header">
+                  <h3 class="text-center">Sign In</h3>
+                  
+              </div>
+              <div class="card-body">
+                  <form (ngSubmit)="login()" [formGroup]="lform">
+                      <div class="input-group form-group">
+                          <div class="input-group-prepend">
+                              <span class="input-group-text"><i class="fas fa-user"></i></span>
+                          </div>
+                          <!-- property binding -->
+                          <!-- <input (change)="accnumChg($event)" type="text" class="form-control" [placeholder]="acc" id="login_accno" required> -->
+                          <!-- templete referencing binding -->
+                          <!-- <input #acno type="text" class="form-control" [placeholder]="acc" id="login_accno" required> -->
+                          <!-- two way binding -->
+                          <input formControlName="accnum" name="accnum" type="text" class="form-control" [placeholder]="acc" id="login_accno" required>
+                      </div>
+                      <div style="color:red;" *ngIf="this.lform.get('accnum')?.touched&&this.lform.get('accnum')?.errors" >Invalid Account Number</div>
+                      <div class="input-group form-group">
+                          <div class="input-group-prepend">
+                              <span class="input-group-text"><i class="fas fa-key"></i></span>
+                          </div>
+                          <!-- <input (change)="accpwrdChg($event)" type="password" class="form-control" placeholder="password" id="login_password" required> -->
+                          <!-- <input #pwrd name="accpwrd" type="password" class="form-control" placeholder="password" id="login_password" required> -->
+                          <input formControlName="accpwrd" name="accpwrd" type="password" class="form-control" placeholder="password" id="login_password" required>
+                        </div>
+                        <div style="color:red;" *ngIf="this.lform.get('accpwrd')?.touched&&this.lform.get('accpwrd')?.errors" >Invalid Password</div>
+                      <div class="form-group">
+                        <!-- event binding -->
+                          <!-- <input (click)="login()" type="submit" value="Login" class="btn float-right login_btn " style="width:50%" > -->
+                          <!-- templete referencing variable binding -->
+                          <!-- <input (click)="login(acno,pwrd)" type="submit" value="Login" class="btn float-right login_btn " style="width:50%" > -->
+                          <input type="submit" value="Login" class="btn float-right login_btn " style="width:50%" >
+                      </div>
+                  </form>
+              </div>
+              <p style="color:white;align-items:baseline;">Not a user? <a routerLink="register">Register</a></p>
+          </div>
+      </div>
+  </div>

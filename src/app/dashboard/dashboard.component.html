@@ -1,0 +1,107 @@
+ <!-- As a link -->
+ <nav class="navbar navbar-light bg-dark " >
+    <a class="navbar-brand  " href="#" style="color:rgb(85, 98, 237);"><b>&#169; HAFC Bank Pvt.Ltd </b></a>
+    <span class="quote text-light">Giving you freedom...</span>
+    <button type="button" class="btn btn-warning" (click)="logout()">Logout</button>
+  </nav>
+  
+  <h1 style="color:white ;">Welcome {{user}}
+<button type="button" class="btn btn-danger float-end" (click)="delpar()">Delete Account</button>
+</h1>
+  <h4 style="color:white;">Login time : {{logdate|date:'short'}}</h4>
+  <a routerLink="/transaction">View Transaction History</a>
+  <app-del-comp (onConfirm)="confirm($event)" (onCancel)="cancel()" [item]="acno" ></app-del-comp>
+  <table align="center">
+      <tr>
+          <td>
+              <div [ngClass]="acno?'style1':''" class="container col-md-12 mt-0">
+                  <div class="d-flex justify-content-center h-100">
+                      <div class="card">
+                          <div class="card-header">
+                              <h3 class="text-center">Deposite</h3>
+                              
+                          </div>
+                          <div class="card-body">
+                              <form (ngSubmit)="deposit()" [formGroup]="dform">
+                        
+              
+                                  <div class="input-group form-group">
+                                      <div class="input-group-prepend">
+                                          <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                      </div>
+                                      <input type="text" formControlName="accnum" name="accnum" class="form-control" placeholder="account number" id="accnum" required>
+                                      
+                                  </div>
+                                  <div style="color:red;" *ngIf="this.dform.get('accnum')?.touched&&this.dform.get('accnum')?.errors" >Invalid Account Number</div>
+                                  <div class="input-group form-group">
+                                      <div class="input-group-prepend">
+                                          <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                      </div>
+                                      <input type="password" formControlName="accpwrd" name="accpwrd" class="form-control" placeholder="password" id="accpwrd" required>
+                                  </div>
+                                  <div style="color:red;" *ngIf="this.dform.get('accpwrd')?.touched&&this.dform.get('accpwrd')?.errors" >Invalid Password</div>
+                                  
+                                  <div class="input-group form-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"></span>
+                                    </div>
+                                    <input type="text" formControlName="accamt" name="accamt" class="form-control" placeholder="Amount" id="accamt" required>
+                                  </div>
+                                  <div style="color:red;" *ngIf="this.dform.get('accamt')?.touched&&this.dform.get('accamt')?.errors" >Invalid Amount</div>
+            
+                                  <div class="form-group">
+                                      <input type="submit" value="Deposite" class="btn float-right login_btn " style="width:50%" >
+                                  </div>
+                              </form>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </td>
+        
+          <td>
+              <div [ngClass]="acno?'style1':''" class="container col-md-12 mt-0">
+                <div class="d-flex justify-content-center h-100">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="text-center">Withdraw</h3>
+                            
+                        </div>
+                        <div class="card-body">
+                            <form (ngSubmit)="widraw()" [formGroup]="wform">
+                      
+            
+                                <div class="input-group form-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                    </div>
+                                    <input type="text" formControlName="accnum2" name="accnum" class="form-control" placeholder="account number" id="accnum2" required>
+                                    
+                                </div>
+                                <div style="color:red;" *ngIf="this.wform.get('accnum2')?.touched&&this.wform.get('accnum2')?.errors" >Invalid Account Number</div>
+                                <div class="input-group form-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                    </div>
+                                    <input type="password" formControlName="accpwrd2" name="accpwrd" class="form-control" placeholder="password" id="accpwrd2" required>
+                                </div>
+                                <div style="color:red;" *ngIf="this.wform.get('accpwrd2')?.touched&&this.wform.get('accpwrd2')?.errors" >Invalid Password</div>
+                                <div class="input-group form-group">
+                                  <div class="input-group-prepend">
+                                      <span class="input-group-text"></span>
+                                  </div>
+                                  <input type="text" formControlName="accamt2" name="accamt" class="form-control" placeholder="Amount" id="accamt2" required>
+                                  
+                                </div>
+                                <div style="color:red;" *ngIf="this.wform.get('accamt2')?.touched&&this.wform.get('accamt2')?.errors" >Invalid Amount</div>
+                                <div class="form-group">
+                                    <input type="submit" value="Withdraw" class="btn float-right login_btn " style="width:50%" >
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </td>
+      </tr>
+  </table>
